@@ -16,12 +16,15 @@ import UIKit
 class ChangeBackgroundViewController: UIViewController {
 
     @IBOutlet weak var backgoundPicker: UIPickerView! //var for picker view
-    @IBOutlet weak var applyButton: UIButton!// var for apply button
+    
 
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var label: UILabel!
-    private let dataSource = ["RED", "BLUE", "GREEN", "YELLOW"]
+    private let dataSource = ["red", "blue", "green", "yellow"]
+    var color = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         // Do any additional setup after loading the view.
         backgoundPicker.delegate = self
@@ -30,13 +33,29 @@ class ChangeBackgroundViewController: UIViewController {
     }
     
 
-    @IBAction func apply(_ sender: UIButton) {
+    @IBAction func applyAction(_ sender: Any) {
+       // label.text = color
+        if(color=="red"){
+            view.backgroundColor = UIColor.red
+        }
+        if(color=="blue"){
+            view.backgroundColor = UIColor.blue
+        }
+        if(color=="green"){
+            view.backgroundColor = UIColor.green
+        }
+        if(color=="yellow"){
+            view.backgroundColor = UIColor.yellow
+        }
+        
     }
     
     
     
-
     
+    
+    
+
     @IBOutlet weak var images: UIPickerView!
     
     
@@ -60,7 +79,9 @@ extension ChangeBackgroundViewController: UIPickerViewDelegate, UIPickerViewData
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            label.text = dataSource[row]
+        
+            color = dataSource[row]
+            //print(color)
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
